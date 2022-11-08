@@ -1,7 +1,7 @@
 // store game data
 const cells = document.querySelectorAll(".cell");
 const playerX = "X";
-const playerY = "Y";
+const playerO = "O";
 let turn = playerX;
 
 const gameBoard = Array(cells.length);
@@ -24,7 +24,25 @@ function cellClick(event) {
         return;
     }
 
-    const cell = event.target
-    const cellNumber = cell
+    const cell = event.target;
+    const cellNumber = cell.dataset.index;
+    if (cell.innerText != "") {
+        return;
+    }
+
+    if (turn === playerX) {
+        document.getElementById("player-turn").innerHTML = "player O";
+        cell.innerText = playerX;
+        gameBoard[cellNumber - 1] = playerX;
+        turn = playerO;
+    }
+    else {
+        document.getElementById("player-turn").innerHTML = "player X";
+        cell.innerText = playerO;
+        gameBoard[cellNumber - 1] = playerO;
+        turn = playerX;
+    }
+
+
 
 }
